@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Phyllotaxis</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" charset="utf-8"></script>
+    <script src="p5/p5.min.js" charset="utf-8"></script>
+    <script src="p5/addons/p5.dom.js" charset="utf-8"></script>
+    <script src="main.js" charset="utf-8" defer></script>
+    <script src="settings.js" charset="utf-8" defer></script>
+    <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+  </head>
+  <body>
+    <main class="main-container" id="main-container">
+      <nav class="top-nav">
+        <span class="logo">Phyllotaxis Generator</span>
+      </nav>
+      <div class="content-wrapper">
+        <div class="canvas-wrapper" id="canvas-wrapper"></div>
+        <div class="menu-wrapper" id="side-nav">
+          <div class="menu-tab">
+
+            <input type="checkbox" class="show-smenu" id="m1">
+            <label for="m1">Phyllotaxis</label>
+
+            <div class="sub-menu">
+              <div class="smenu-tab">
+                <input type="checkbox" class="show-smenu" id="m1st1">
+                <label for="m1st1">angle </label>
+
+                <div class="sub-menu">
+                  <div class="smenu-item">
+                    <div class="property-name">value</div>
+                    <div class="property-value">
+                      <input type="range" min="137" max="138" step="0.1" id="main-angle">
+                    </div>
+                  </div>
+                <div class="smenu-tab">
+                  <input type="checkbox" class="show-smenu" id="m1st1-1">
+                  <label for="m1st1-1" class="sub-menu-tier1" >animation</label>
+                  <div class="sub-menu">
+                    <div class="smenu-item">
+                      <div class="property-name">from</div>
+                      <div class="property-value">
+                        <input type="number" id="input-angle-from" step="any">
+                      </div>
+                    </div>
+                    <div class="smenu-item">
+                      <div class="property-name">to</div>
+                      <div class="property-value">
+                        <input type="number" id="input-angle-to" step="any">
+                      </div>
+                    </div>
+                    <div class="smenu-item">
+                      <div class="property-name">step</div>
+                      <div class="property-value">
+                        <input type="number" id="input-angle-step" step="any">
+                      </div>
+                    </div>
+                    <div class="smenu-item">
+                      <div class="property-name">loop</div>
+                      <div class="property-value">
+                        <input type="checkbox" id="chk-angle-animation" autocomplete="off">
+                      </div>
+                    </div>
+                    <div class="smenu-item">
+                      <div class="property-name">pause</div>
+                      <div class="property-value">
+                        <input type="checkbox" id="chk-angle-animation-pause" autocomplete="off">
+                      </div>
+                    </div>
+                    <div class="smenu-item">
+                      <div class="property-name">current angle value</div>
+                      <div class="property-value" id="angle-current-value">no data</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="smenu-tab">
+                <input type="checkbox" class="show-smenu" id="m1st2">
+                <label for="m1st2">radius</label>
+
+                <div class="sub-menu">
+                  <div class="smenu-item">
+                    <div class="property-name">value</div>
+                    <div class="property-value">
+                        <input type="range" min="5" max="20" step="1" id="main-radius">
+                    </div>
+                  </div>
+                <div class="smenu-tab">
+                  <input type="checkbox" class="show-smenu" id="m1st2-1">
+                  <label for="m1st2-1" class="sub-menu-tier1">animation</label>
+                  <div class="sub-menu">
+                    <div class="smenu-item">
+                      <div class="property-name">min</div>
+                      <div class="property-value">NYI</div>
+                    </div>
+                    <div class="smenu-item">
+                      <div class="property-name">max</div>
+                      <div class="property-value">NYI</div>
+                    </div>
+                    <div class="smenu-item">
+                      <div class="property-name">loop</div>
+                      <div class="property-value">NYI</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+              <div class="smenu-tab">
+                <input type="checkbox" class="show-smenu" id="m1st3">
+                <label for="m1st3">colors</label>
+
+                <div class="sub-menu">
+                  <div class="smenu-item">
+                    <div class="property-name">frequency</div>
+                    <div class="property-value">
+                        <input type="range" min="1" max="100" step="1" id="main-color">
+                    </div>
+                  </div>
+                  <div class="smenu-tab">
+                    <input type="checkbox" class="show-smenu" id="m1st3-1">
+                    <label for="m1st3-1" class="sub-menu-tier1">list</label>
+                    <div class="sub-menu">
+                      <template id="color-list-item-template">
+                        <div class="smenu-item color-list-wrapper">
+                          <div class="property-name color-name">
+                            <input type="text" class="color-input">
+                          </div>
+                          <div class="property-value">
+                            <div class="color-preview"></div>
+                          </div>
+                          <div class="property-remove" data-color-index="-1"><i class="fas fa-times"></i></div>
+                        </div>
+                      </template>
+                      <div class="smenu-item">
+                        <div class="btn-primary" id="btn-add-color">add color</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="smenu-tab">
+                    <input type="checkbox" class="show-smenu" id="m1st3-2">
+                    <label for="m1st3-2" class="sub-menu-tier1">animation</label>
+                    <div class="sub-menu">
+                      <div class="smenu-item">
+                        <div class="property-name">from</div>
+                        <div class="property-value">
+                          <input type="number" id="input-colors-from">
+                        </div>
+                      </div>
+                      <div class="smenu-item">
+                        <div class="property-name">to</div>
+                        <div class="property-value">
+                          <input type="number" id="input-colors-to">
+                        </div>
+                      </div>
+                      <div class="smenu-item">
+                        <div class="property-name">step</div>
+                        <div class="property-value">
+                          <input type="number" id="input-colors-step" step="any">
+                        </div>
+                      </div>
+                      <div class="smenu-item">
+                        <div class="property-name">loop</div>
+                        <div class="property-value">
+                          <input type="checkbox" id="chk-colors-animation" autocomplete="off">
+                        </div>
+                      </div>
+                      <div class="smenu-item">
+                        <div class="property-name">pause</div>
+                        <div class="property-value">
+                          <input type="checkbox" id="chk-colors-animation-pause" autocomplete="off">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="smenu-tab">
+                <input type="checkbox" class="show-smenu" id="m1st4">
+                <label for="m1st4">dots</label>
+
+                <div class="sub-menu">
+                  <div class="smenu-item">
+                    <div class="property-name">count</div>
+                    <div class="property-value">
+                      <input type="number" value="450" id="main-dot-count">
+                    </div>
+                  </div>
+                  <div class="smenu-tab">
+                    <input type="checkbox" class="show-smenu" id="m1st4-1">
+                    <label for="m1st4-1" class="sub-menu-tier1">animation</label>
+                    <div class="sub-menu">
+                      <div class="smenu-item">
+                        <div class="property-name">min</div>
+                        <div class="property-value">NYI</div>
+                      </div>
+                      <div class="smenu-item">
+                        <div class="property-name">max</div>
+                        <div class="property-value">NYI</div>
+                      </div>
+                      <div class="smenu-item">
+                        <div class="property-name">loop</div>
+                        <div class="property-value">NYI</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+          </div>
+
+            <div class="menu-tab">
+
+              <input type="checkbox" class="show-smenu" id="m2">
+              <label for="m2">Other</label>
+
+              <div class="sub-menu">
+
+                <div class="smenu-tab">
+                  <input type="checkbox" class="show-smenu" id="m2st1">
+                  <label for="m2st1">background</label>
+
+                  <div class="sub-menu">
+                    <div class="smenu-item">
+                      <div class="property-name">color</div>
+                      <div class="property-value">
+                        <input type="text" id="input-background-color">
+                      </div>
+                    </div>
+                    <div class="smenu-item">
+                      <div class="property-name">image</div>
+                      <div class="property-value">NYI</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="smenu-tab">
+                  <input type="checkbox" class="show-smenu" id="m2st2">
+                  <label for="m2st2">save</label>
+
+                  <div class="sub-menu">
+                    <div class="smenu-item">
+                      <div class="btn-primary" id="btn-save-gif">gif</div>
+                    </div>
+                    <div class="smenu-item">
+                      <div class="btn-primary" id="btn-save-image">static image</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+  <!-- https://stackoverflow.com/questions/56719276/using-javascript-functions-to-add-dynamic-html-content -->
+  <!-- https://pinetools.com/darken-color -->
+</html>

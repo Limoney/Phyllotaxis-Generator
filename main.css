@@ -1,0 +1,149 @@
+:root
+{
+    --primary: #3498db;
+    --primary-dark: #248acf;
+    --secondary: #34495e;
+    --tertiary: #161f28;
+    --quaternary: #273748;
+    --font: #fff;
+}
+body
+{
+  margin: 0;
+  padding: 0;
+  background-color: var(--secondary);
+  color: var(--font);
+  font-family: 'Raleway', sans-serif;
+  overflow-y: hidden;
+  /*https://fonts.google.com/specimenTab?standard-styles#standard-styles*/
+}
+.main-container
+{
+  height: 100%;
+  background-color: var(--quaternary);
+}
+.top-nav
+{
+  padding: 10px 20px;
+  font-size: 22px;
+  background-color: var(--primary);
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.content-wrapper
+{
+  display:flex;
+}
+.canvas-wrapper
+{
+  width:calc(100vw - 300px);
+  display:flex;
+}
+
+
+
+
+
+
+
+
+.menu-wrapper
+{
+  height: calc(100vh - 60px);
+  background-color: #34495e;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 21px;
+  width: 300px;
+  overflow-y: scroll
+
+}
+.menu-tab input[type="checkbox"]
+{
+  display: none;
+}
+.sub-menu
+{
+  max-height: 0;
+  transition: max-height 0.6s ease-in-out;
+  overflow-y: hidden;
+  background-color: #2c3e50;
+  font-size: 18px;
+}
+.sub-menu .sub-menu
+{
+  background-color: #273748;
+}
+ label
+{
+  padding: 10px;
+  display:block;
+}
+/* .show-smenu:checked ~ label ~ .smenu */
+.show-smenu + label
+{
+  /* background-color: #3498db; */
+}
+.show-smenu:checked + label + .sub-menu
+{
+  max-height: 200vh;
+  transition: max-height .9s ease-in-out;
+}
+.smenu-tab label:hover, .smenu-item:hover
+{
+  /* padding-left: 20px; */
+  background-color: #243343;
+}
+.smenu-item
+{
+  display:flex;
+  justify-content: space-between;
+  padding: 10px;
+  align-items: center;
+}
+.property-value input[type="checkbox"]
+{
+  display:block;
+}
+.sub-menu-tier1 + .sub-menu .property-name
+{
+  padding: 0 10px;
+}
+.color-preview
+{
+  width: 20px;
+  height:20px;
+}
+.btn-primary
+{
+  background-color:var(--primary);
+  padding: 8px;
+  border-radius: 5px;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+}
+.btn-primary:hover
+{
+  background-color: var(--primary-dark);
+}
+input[type="text"], input[type="number"]
+{
+  /* width:40px; */
+  background-color: transparent;
+  border: 2px solid var(--secondary);
+  color: var(--font);
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 5px;
+}
+.color-list-wrapper > div
+{
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
